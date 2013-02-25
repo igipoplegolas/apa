@@ -1,11 +1,11 @@
 from sqlalchemy import create_engine, MetaData, Table, Column
-from sqlalchemy import Float, String, Date
+from sqlalchemy import Float, String, Integer
 
-#   create engine
+# create engine
 engine = create_engine("postgresql://postgres:postgres@localhost/sandbox")
 metadata = MetaData(bind=engine)
 
-#   define table recipients
+# define table recipients
 recipients = Table("recipients", metadata,
     Column("source_EU", Float),
     Column("source_SK", Float),
@@ -15,7 +15,8 @@ recipients = Table("recipients", metadata,
     Column("beneficiary", String),
     Column("zip", String),
     Column("city", String),
-    Column("year", Date)
+    Column("year", Integer)
 )
 
+metadata.drop_all();
 metadata.create_all()
